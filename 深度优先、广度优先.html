@@ -1,0 +1,77 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+  <meta charset="UTF-8">
+  <meta name="viewport" content="width=device-width, initial-scale=1.0">
+  <title>Document</title>
+</head>
+<body>
+  
+</body>
+<script>
+// 深度优先递归
+  // 递归深度遍历，避免环图死循环
+function Node(key){
+    this.children = [] //用数组来存放子节点
+    this.key = key //当前节点序号
+    this.isVisited = false; // 是否已标记mark
+}
+ 
+//创建节点
+let n1 = new Node(1),
+    n2 = new Node(2),
+    n3 = new Node(3),
+    n4 = new Node(4),
+    n5 = new Node(5),
+    n6 = new Node(6);
+ 
+//节点关联
+n1.children.push(n2, n5)
+n2.children.push(n3, n4)
+n5.children.push(n6,n1)  // 注意：这里形成环
+ 
+// //利用递归实现dfs
+// function dfs(node){
+//     if(!node.isVisited) {
+//       node.isVisited = true;
+//       console.log(node.key)
+//       node.children.forEach(dfs)
+//     }
+// }
+dfs(n1)
+
+
+// 深度优先  利用数组
+function dfs(node){
+    const stack = [node]  //模拟栈
+    while( stack.length){ //栈中存在数据
+
+        const first = stack.shift();  //从头部获取出栈元素
+        console.log(first.key) 
+        first.isVisited = true;
+        first.children.slice().reverse().forEach((child) => {
+          if(!child.isVisited) {
+            stack.unshift(child) //从头部插入进栈元素
+          }
+        })
+    }
+}
+
+
+// // 广度优先：利用数组
+// //广度优先搜索算法实现
+// function bfs(node){
+//     const queue = [node] //创建一个队列
+//     while(queue.length){ //队列存在元素
+//         const first = queue.shift() //先出
+//         console.log(first.key) //出列元素序号
+//         first.isVisited = true;
+//         first.children.forEach((child) => {
+//           if(!child.isVisited) {
+//             queue.push(child)
+//           }
+//         }) //子节点进入队列)
+//     }
+// }
+</script>
+</html>

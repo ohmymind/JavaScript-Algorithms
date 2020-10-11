@@ -1,0 +1,26 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+  <meta charset="UTF-8">
+  <meta name="viewport" content="width=device-width, initial-scale=1.0">
+  <title>Document</title>
+</head>
+<body>
+  
+</body>
+<script>
+  var maximum = function(a, b) {
+var k = (a+b)/2;/*取得两数的平均数*/
+k = k + Math.abs(a-k);/*K值加上到其中任何一个数的距离*/
+return k;
+};
+console.log(maximum(1,5))
+
+const maximum2 = function(a, b) {
+    // 两数和 + 两数差绝对值 的一半
+    return ((a+b)+Math.abs(a-b)) / 2
+};
+console.log(maximum2(1,5))
+
+</script>
+</html>

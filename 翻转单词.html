@@ -1,0 +1,40 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+  <meta charset="UTF-8">
+  <meta name="viewport" content="width=device-width, initial-scale=1.0">
+  <title>Document</title>
+</head>
+<body>
+  
+</body>
+<script>
+  let str = 'hello world';
+  function reverseWord(str) {
+    return str.split(' ').map(item => item.split('').reverse().join('')).join(' ')
+  }
+  // console.log(reverseWord(str));
+
+  function reverseWord2(str) {
+    if(!str) return '';
+
+    let result = '';
+    // 收集器：收集每个字符的逆序单词
+    let reversedStr = '';
+    let len = str.length;
+    for(let i = 0; i < len; i++) {
+      if(str[i] !== ' ') {
+        // 要点：同和翻转字母的逻辑，新字符从左侧补充，而非右侧
+        reversedStr = str[i] + reversedStr;
+      } else {
+        // 算法重点：碰到空格，result添加收集器到结果中，并重置收集器
+        result = result + reversedStr + str[i];
+        reversedStr = '';
+      }
+    }
+
+    return result + reversedStr;
+  }
+  console.log(reverseWord2(str)+1);
+</script>
+</html>

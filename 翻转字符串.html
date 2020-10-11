@@ -1,0 +1,50 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+  <meta charset="UTF-8">
+  <meta name="viewport" content="width=device-width, initial-scale=1.0">
+  <title>Document</title>
+</head>
+<body>
+  
+</body>
+<script>
+  let str = 'hello world';
+  function reverseStr(str) {
+    let len = str.length;
+    let newStr = '';
+    for(let i = len - 1; i >= 0; i--) {
+      newStr += str[i]
+    }
+    return newStr;
+  }
+  console.log(reverseStr(str));
+
+  function reverseStr2(str) {
+    let len = str.length;
+    let newStr = '';
+    for(let i = 0; i < len; i++) {
+      // 方法2重点：反向累加，新字符从左边加入，而不是常规右边累加
+      newStr = str[i] + newStr
+    }
+    return newStr;
+  }
+  console.log(reverseStr2(str));
+
+
+
+  let strArr = ['h','e','l','l',' ','w','o','r','l','d'];
+  function reverseStrArr(strArr) {
+    let len = strArr.length - 1;
+    for(let i = 0; i < len; i++) {
+      let temp = strArr[i];
+      strArr[i] = strArr[len];
+      strArr[len]  = temp
+      // 关键：每次替换完，len缩减，从而避免替换过的，遍历到后期又替换了回来
+      len--
+    }
+    return strArr;
+  }
+  console.log(reverseStrArr(strArr));
+</script>
+</html>

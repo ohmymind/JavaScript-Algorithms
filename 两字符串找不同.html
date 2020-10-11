@@ -1,0 +1,41 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+  <meta charset="UTF-8">
+  <meta name="viewport" content="width=device-width, initial-scale=1.0">
+  <title>Document</title>
+</head>
+<body>
+  
+</body>
+<script>
+let str1 = 'abcdefj';
+let str2 = 'abcdepfj';
+function findTheDifference(str1, str2) {
+  let result = 0;
+  for(let i = 0; i < str1.length; i++) {
+    result = result + str1.charCodeAt(i);
+    result = result - str2.charCodeAt(i);
+  }
+  // 最终result必然为负数
+  result = result - str2.charCodeAt(str2.length - 1);
+  console.log(result)
+  return String.fromCharCode(Math.abs(result))
+};
+console.log(findTheDifference(str1,str2));
+
+
+function findTheDifference2(str1, str2) {
+  let map = {};
+  for(let i = 0; i < str1.length; i++) {
+    map[str1[i]] = true
+  }
+  for(let i = 0; i < str2.length; i++) {
+    if(!map[str2[i]]) {
+      return str2[i]
+    }
+  }
+};
+console.log(findTheDifference2(str1,str2));
+</script>
+</html>
