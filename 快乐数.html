@@ -1,0 +1,32 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+  <meta charset="UTF-8">
+  <meta name="viewport" content="width=device-width, initial-scale=1.0">
+  <title>Document</title>
+</head>
+<body>
+  
+</body>
+
+<script>
+function isHappyNum(num) {
+  if(num === 1) return true;
+  num = num + '';
+  let sum = 0;
+  let set = new Set();
+  while(sum !== 1) {
+    sum = 0;
+    for(let i = 0; i < num.length; i++) {
+      sum += num[i] * num[i];
+    }
+    num = sum + '';
+    if(set.has(sum)) return false
+    set.add(sum)
+  }
+  return true;
+}
+console.log(isHappyNum(12))
+
+</script>
+</html>

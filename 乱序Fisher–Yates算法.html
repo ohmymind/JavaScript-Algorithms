@@ -1,0 +1,41 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+  <meta charset="UTF-8">
+  <meta name="viewport" content="width=device-width, initial-scale=1.0">
+  <title>Document</title>
+</head>
+<body>
+  
+</body>
+
+<script>
+/* 
+sort并不随机，不同的数据量V8用的不同排序算法，小于10个数用插入排序，问题来了：当待排序元素跟有序元素进行比较时，一旦确定了位置，就不会再跟位置前面的有序元素进行比较，所以就乱序的不彻底。
+
+ */
+
+
+// 原理很简单，就是遍历数组元素，然后将当前元素与以后随机位置的元素进行交换
+// 从代码中也可以看出，这样乱序的就会更加彻底。
+function shuffle(a) {
+  var j, x, i;
+  for (i = a.length; i; i--) {
+      j = Math.floor(Math.random() * i);
+      x = a[i - 1];
+      a[i - 1] = a[j];
+      a[j] = x;
+  }
+  return a;
+}
+
+
+for(let i = 0; i < 20; i++) {
+  let rand = Math.random();
+  let cheng = rand * i;
+  console.log(rand,cheng,Math.floor(cheng))
+}
+</script>
+</html>
+
+

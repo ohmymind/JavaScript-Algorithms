@@ -1,0 +1,33 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+  <meta charset="UTF-8">
+  <meta name="viewport" content="width=device-width, initial-scale=1.0">
+  <title>Document</title>
+</head>
+<body>
+  
+</body>
+
+<script>
+  /* 
+  bind:
+  第一个参数为this,后续参数为参数
+  返回的是一个函数
+   */
+function Foo(a,b) {
+ this.a = a;
+ this.b = b;
+//  console.log(arguments)
+}
+Foo.prototype.c = 'ccc';
+
+Foo.prototype.myBind = function(context) {
+  var self = this;
+  return function () {
+      return self.apply(context);
+  }
+}
+Foo.mybind(this,1,2);
+</script>
+</html>

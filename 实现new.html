@@ -1,0 +1,40 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+  <meta charset="UTF-8">
+  <meta name="viewport" content="width=device-width, initial-scale=1.0">
+  <title>Document</title>
+</head>
+<body>
+  
+</body>
+
+<script>
+  /* 
+  实现new：
+  1、对象中的属性copy
+  2、原型中的属性挂载上去
+  3、return出去
+   */
+function Foo(a,b) {
+ this.a = a;
+ this.b = b;
+//  console.log(arguments)
+}
+Foo.prototype.c = 'ccc';
+
+function objectCreater() {
+  var self = this;
+  // 获取bind2函数从第二个参数到最后一个参数
+  var args = Array.prototype.slice.call(arguments, 1);
+  return function () {
+    // 这个时候的arguments是指bind返回的函数传入的参数
+    var bindArgs = Array.prototype.slice.call(arguments);
+    return self.apply(context, args.concat(bindArgs));
+  }
+}
+
+let a = objectCreater(Foo,'tom',18)
+console.log(a);
+</script>
+</html>

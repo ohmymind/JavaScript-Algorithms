@@ -1,0 +1,36 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+  <meta charset="UTF-8">
+  <meta name="viewport" content="width=device-width, initial-scale=1.0">
+  <title>Document</title>
+</head>
+<body>
+  
+</body>
+
+<script>
+function Foo() {
+ this.a = 1;
+ return {
+   a: 4,
+   b: 5
+ };
+
+}
+
+
+Foo.prototype.a = 6;
+
+Foo.prototype.b = 7;
+
+Foo.prototype.c = 8;
+
+// 获取的是return返回的值
+var o = new Foo();
+console.log(o);
+console.log(o.a);
+// 关键点：new之后得到对象，但对象中没有c，且原型链中的c并没有挂载到对象中
+console.log(o.c);
+</script>
+</html>
