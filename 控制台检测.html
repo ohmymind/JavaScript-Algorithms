@@ -1,0 +1,41 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+  <meta charset="UTF-8">
+  <meta name="viewport" content="width=device-width, initial-scale=1.0">
+  <title>Document</title>
+</head>
+<body>
+  
+</body>
+<script>
+// 方法1：chrome测试无效
+function consoleOpenCallback(){
+    console.log(1) 
+    alert("禁止打开控制台");
+    return "";
+}
+
+!function () {
+  console.log(2) 
+    // 创建一个对象
+    let foo = /./;
+    // 将其打印到控制台上，实际上是一个指针
+    console.log(foo);
+    // 要在第一次打印完之后再重写toString方法
+    foo.toString = consoleOpenCallback;
+}()
+
+
+// 方法2：chrome有效
+let div = document.createElement('div');
+let loop = setInterval(() => {
+    console.log(div);
+    console.clear();
+});
+Object.defineProperty(div,"id", {get: () => {
+    clearInterval(loop);
+    alert("禁止调试");
+}});
+</script>
+</html>
