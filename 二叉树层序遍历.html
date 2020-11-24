@@ -1,0 +1,43 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+  <meta charset="UTF-8">
+  <meta name="viewport" content="width=device-width, initial-scale=1.0">
+  <title>Document</title>
+</head>
+<body>
+  
+</body>
+<script>
+// [3,9,20,null,null,15,7]
+var levelOrder = function(root) {
+  let result  = [];
+  if(!root) {
+    return result;
+  }
+
+  let q = [[root, 0]];
+  // 遍历二叉树关键点：用while循环，内部控制，从头或尾取，及控制从头或尾push来控制广度和深度优先 
+  while(q.length) {
+    let currentArr = q.shift()
+    let current = currentArr[0];
+    let currentDeep = currentArr[1];
+
+    if(result[currentDeep]) {
+      result[currentDeep] = result[currentDeep].push(current.val);
+    } else {
+      result[currentDeep] = [];
+      result[currentDeep] = result[currentDeep].push(current.val);
+    }
+    
+    // 持续push队列q的长度
+    if(current.left) {
+      q.push(current.left, currentDeep + 1)
+    }
+    if(current.right) {
+      q.push(current.right, currentDeep + 1)
+    }
+  }
+}; 
+</script>
+</html>

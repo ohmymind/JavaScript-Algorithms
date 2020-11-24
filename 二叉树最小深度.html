@@ -1,0 +1,29 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+  <meta charset="UTF-8">
+  <meta name="viewport" content="width=device-width, initial-scale=1.0">
+  <title>Document</title>
+</head>
+<body>
+  
+</body>
+<script>
+function minDeep(root) {
+  let deep = 0;
+  if(!root) {
+    return 0;
+  }
+  if(!root.left && !root.right) {
+    return 1;
+  }
+  if(root.left) {
+    return 1 + minDeep(root.left)
+  } else if(root.right) {
+    return 1 + minDeep(root.right)
+  } else if(root.left && root.right){
+    return 1 + Math.min(minDeep(root.left), minDeep(root.right))
+  }
+}
+</script>
+</html>

@@ -1,0 +1,72 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+  <meta charset="UTF-8">
+  <meta name="viewport" content="width=device-width, initial-scale=1.0">
+  <title>Document</title>
+</head>
+<body>
+  
+</body>
+<script>
+/* 
+
+字节飞书
+一面
+这一轮全是代码题，没问别的
+1. css实现开关样式，要求只可使用一个dom元素
+2. 实现sum函数，使得   【关键字搜索：js实现函数连续】
+sum(1,2,3).sumOf() //6
+sum(2,3)(2).sumOf() //7
+sum(1)(2)(3)(4).sumOf() //10
+3. 求二叉树所有根到叶子路径组成的数字之和，二叉树每个节点的value范围是1-9
+4. js实现一个带并发限制的异步调度器schedule，保证同时运行的任务最多有两个
+
+二面
+先聊了项目中遇到的一些困难点，再提问题
+1. react更新原理，和angular/vue异同
+2. angular脏值检查原理，为什么它不使用vue的数据绑定模式
+3. 操作系统主要都做了哪些工作
+4. LRU算法的原理和实现
+5. AI图像识别的步骤及原理(因本人写过相关论文)
+6. 性能优化的指标和常见优化手段
+7. SSR原理
+8. 扫码登录的实现原理
+9. 算法题：实现一个二进制加法
+10. 算法题：合并两个number数组a，b并排序，如果有一个数出现多次，如a数组有1个5，b数组有2个5，合并出的数组应有2个5，即按次数多的保留
+ */
+
+ // sum,sumOf
+
+ // sum
+ function sum(){
+   let count = 0;
+   let arg = [].slice.call(arguments);
+   arg.forEach(item => {
+     count += item;
+   });
+   function result() {
+    let arg = [].slice.call(arguments);
+    if(!arg.length) return count; 
+
+    arg.unshift(count)
+    // return this
+    return sum.apply(null, arg)
+   }
+   result.sumOf = function() {
+     return count;
+   }
+   return result;
+ };
+//  sum.a = sum;
+
+//  sum.prototype.sumOf = function() {
+
+//  }
+//  let a = sum(1,2);
+//  a();
+ console.log(sum(1,2,3)(1).sumOf());
+//  console.log(sum(1,2,3).a());
+//  console.log(sum.a);
+</script>
+</html>
