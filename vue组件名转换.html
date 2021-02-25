@@ -1,0 +1,23 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+  <meta charset="UTF-8">
+  <meta name="viewport" content="width=device-width, initial-scale=1.0">
+  <title>Document</title>
+</head>
+<body>
+  
+</body>
+<script>
+let reg = /-(\w)/g;
+let str = "the-first-name"
+
+let vueName = str.replace(reg, function($,$1,$2){
+	return $1.toUpperCase()
+})
+vueName = vueName.charAt(0).toUpperCase() + vueName.slice(1)
+
+console.log(vueName);
+commit1
+</script>
+</html>

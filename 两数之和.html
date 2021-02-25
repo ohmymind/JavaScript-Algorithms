@@ -1,0 +1,39 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+  <meta charset="UTF-8">
+  <meta http-equiv="X-UA-Compatible" content="IE=edge">
+  <meta name="viewport" content="width=device-width, initial-scale=1.0">
+  <title>Document</title>
+</head>
+<body>
+  
+</body>
+<script>
+  /**
+ * @param {number[]} nums
+ * @param {number} target
+ * @return {number[]}
+ */
+var nums = [2,7,11,15], target = 18;
+var twoSum = function(nums, target) {
+    let computedMap = {};
+    let index = [];
+    for(let i = 0; i < nums.length; i++) {
+        const gap = target - nums[i];
+        // 遍历求差  如果遍历到差 说明找到了
+        
+        // if(computedMap[nums[i]] !== undefined) {
+        //     index = [computedMap[nums[i]],i];
+        //     console.log('----:',nums[i],gap,computedMap,'index:',i,computedMap[nums[i]]);
+        //     break;
+        // }
+        // computedMap[gap] = i;
+
+
+    }
+    return index;
+};
+twoSum(nums,target)
+</script>
+</html>
