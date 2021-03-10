@@ -1,0 +1,60 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+  <meta charset="UTF-8">
+  <meta http-equiv="X-UA-Compatible" content="IE=edge">
+  <meta name="viewport" content="width=device-width, initial-scale=1.0">
+  <title>Document</title>
+</head>
+<body>
+  
+</body>
+<script>
+let str = '12345678';
+//方法1：正则
+function numFormat(str){
+  // (?=)标识仅当后面为XX时，匹配前面， (\d{3})表示三个数字，+表示1-多个
+  // $表示结束符 等于此题中(?!\d) 表示后面不为数字，意味着$
+  return str.replace(/(\d)(?=(\d{3})+$)/g, "$1,"); 
+  // return str.replace(/(\d)(?=(\d{3})+(?!\d))/g, "$1,"); 
+  // return str.replace(/(\d)(?=(\d\d\d)+(?!\d))/g, "$1,"); 
+
+  // return str.replace(/(\d)(?=(\d{3})+$)/g, function($1){
+  //   return $1 + ','
+  // }); 
+}
+// console.log(numFormat(str))
+
+let str2 = '12345678.123'
+// 方法2：逻辑遍历 可解决小数点
+function numFormat2(str) {
+  console.log(str)
+
+  let arr = str.split('.');
+  str = arr[0];
+  console.log(str)
+  let result = '';
+  let temp = 0;
+  for(let i = str.length - 1; i >= 0; i--) {
+    if(temp === 3) {
+      console.log(str[i])
+      result = str[i] + ',' + result;
+      temp = 0;
+    } else {
+      result = str[i] + result
+    }
+    ++temp;
+  }
+  return result + '.' + arr[1];
+}
+// console.log(numFormat2(str2))
+
+// 方法3：数字tolocaleString
+let str3 = '12345678.1234'
+function numFormat3(str) {
+  return (str-0).toLocaleString()
+}
+console.log(numFormat3(str3))
+
+</script>
+</html>
