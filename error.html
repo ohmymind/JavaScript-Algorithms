@@ -1,0 +1,60 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+  <meta charset="UTF-8">
+  <meta http-equiv="X-UA-Compatible" content="IE=edge">
+  <meta name="viewport" content="width=device-width, initial-scale=1.0">
+  <title>Document</title>
+</head>
+<body>
+<button id='box'>按钮</button>  
+</body>
+<script>
+window.addEventListener('error', function(event) {
+  console.log('error-event:', event)
+  if(event.type === 'error') {
+    event.type = 'info'
+    console.log(1123)
+  }
+  console.log(event)
+})
+</script>
+<script>
+let box = document.getElementById('box');
+box.onclick = function() {
+  console.log('click');
+  throw 'wwwwwwwww'
+  // throw new Error('wwwwwwwww')
+  try {
+    throw {
+      message: "messageqqqqq",
+      name: 'UserException',
+      sss: 123
+    }
+  }catch(error) {
+    console.log('error:', error)
+  }
+}
+
+try{
+    setTimeout(()=>{
+         throw 'error-message'  
+    }, 0)
+}catch(e){
+    console.log('error',e);
+}
+// console.log(111);
+
+
+function testFinally(){
+      try {
+        return 2;
+      } catch (error){
+        return 1;
+      } finally {
+        return 0;
+      }
+    }
+    console.log(testFinally());
+</script>
+</html>

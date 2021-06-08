@@ -1,0 +1,33 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+  <meta charset="UTF-8">
+  <meta http-equiv="X-UA-Compatible" content="IE=edge">
+  <meta name="viewport" content="width=device-width, initial-scale=1.0">
+  <title>Document</title>
+</head>
+<body>
+  
+</body>
+<script>
+let arr = [1,2,3,4,5,6];
+function chunk(arr, num) {
+  let result = [];
+  let temp = 1;
+  let tempArr = [];
+  for(let i = 0; i < arr.length; i++) {
+    console.log(arr[i],temp)
+    // 如果到num，推成数组push到result
+    tempArr.push(arr[i]);
+    if(temp === num) {
+      result.push(tempArr)
+      tempArr = [];
+      temp = 0
+    }
+    temp++;
+  }
+  return result;
+}
+console.log(chunk(arr,4))
+</script>
+</html>

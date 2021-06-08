@@ -1,0 +1,104 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+  <meta charset="UTF-8">
+  <meta http-equiv="X-UA-Compatible" content="IE=edge">
+  <meta name="viewport" content="width=device-width, initial-scale=1.0">
+  <title>Document</title>
+</head>
+<body>
+  
+</body>
+<script>
+function fib(n) {
+  console.log(n)
+  if(n <= 2) {
+    return n;
+  } else {
+    return fib(n - 1) + fib(n - 2);
+  }
+}
+// 5
+// 4 + 3
+// 3 2 + 2 1
+// 2 1 + 2 1
+
+function fib4(n, sum) {
+  if(n <= 2) {
+    return sum + n;
+  } else {
+    return fib4(n - 1, n + sum);
+  }
+}
+// console.log(fib(4))
+console.log(fib4(4,0))
+
+// 0 1 1 2 3 5
+
+const map = {};
+function fib2(n) {
+  if(n <= 2) {
+    return n;
+  } else {
+    if(map[n]) {
+      console.log('找到重复缓存：',n)
+      return map[n];
+    } else {
+      map[n] = fib(n - 1) + fib(n - 2);
+      return map[n];
+    }
+  }
+}
+
+function fib3(n) {
+  if(n <= 2) {
+    return n;
+  }
+  let result = 0;
+  let pre = 1;
+  let next = 2;
+  
+  for (let i = 3; i < n + 1; i ++) {
+    result = pre + next;
+    pre = next;
+    next = result;
+  }
+  return result;
+}
+
+// console.log(fib(5));
+// console.log(fib2(5));
+// console.log(fib3(5));
+
+function factor(n) {
+  console.log(n)
+  if(n <= 1) {
+    return 1
+  } else {
+    return n * factor(n - 1);
+  }
+}
+// console.log(factor(5));
+
+// function fib2(n) {
+//   sum = 0;
+//   if(n <= 2) {
+//     sum = n;
+//     return sum;
+//   }
+//   for(let i = 0; i < n; i ++) {
+//     sum = i + n;
+//   }
+//   return sum;
+// }
+
+// 0 1 2 3 4 5
+// const db
+// function fib3() {
+
+// }
+// console.time()
+// console.log(fib(6));
+// console.timeEnd()
+</script>
+</html>

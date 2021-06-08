@@ -1,0 +1,42 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+  <meta charset="UTF-8">
+  <meta http-equiv="X-UA-Compatible" content="IE=edge">
+  <meta name="viewport" content="width=device-width, initial-scale=1.0">
+  <title>Document</title>
+</head>
+<body>
+  
+</body>
+<script>
+//   var b = 10;
+// (function b(){
+//     b = 20;
+//     console.log(b); 
+// })();
+
+
+// var obj = {
+//     '2': 3,
+//     '3': 4,
+//     'length': 2,
+//     'splice': Array.prototype.splice,
+//     'push': Array.prototype.push
+// }
+// obj.push(1)
+// obj.push(2)
+// console.log(obj)
+
+
+var a = { n: 1 };
+var b = a;
+// a = { n: 2 };
+
+a.x = a = { n: 2 };
+console.log(a)
+console.log(b)
+console.log(a.x) // undefined
+console.log(b.x) // {n:2}
+</script>
+</html>

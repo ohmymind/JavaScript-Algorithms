@@ -1,0 +1,87 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+  <meta charset="UTF-8">
+  <meta http-equiv="X-UA-Compatible" content="IE=edge">
+  <meta name="viewport" content="width=device-width, initial-scale=1.0">
+  <title>Document</title>
+</head>
+<body>
+  
+</body>
+<script>
+// 1. 1秒后 打印 hello
+// 2. 2秒后打印 world
+// 3. 3秒后打印 ！
+// 4. 1秒后继续开始循环
+
+function looplog() {
+  let arr = ['hello', 'world', '!'];
+  for(let i = 0; i < arr.length; i++) {
+    (function(){
+      setTimeout(function(){
+        console.log(arr[i]);
+      },(i+1) * 1000);
+    })()
+  }
+}
+// looplog()
+
+setInterval(() => {
+  looplog()
+}, 4000)
+
+// for (let i=0; i<5; i++) {
+//       (function () {
+//         setTimeout(() => console.log(i), 1000*i)
+//       })()
+//     }
+
+// function sleep(time) {
+//   return new Promise(function(resolve,reject) {
+//     setTimeout(function() {
+//       resolve()
+//     },time)
+//   })
+// };
+
+// (function(){
+//   sleep(1000).then(function(){
+//     console.log(123)
+//   }).then(function(){
+//     sleep(2000).then(function(){
+//       console.log(456)
+//     })
+//   });
+// })()
+
+
+
+// sleep(1).then(function() {
+//   console.log('1')
+// }).sleep(1).then(
+//   function() {
+//     console.log('2')
+//   }
+// ).sleep(1).then(function() {
+//   console.log('3')
+// })
+
+let arr = [1,3,4,5,10,7,8,9,2];
+function sortArr(arr) {
+  for(let i = 0; i < arr.length; i++) {
+    // 奇数
+    if(arr[i] % 2 !== 0) {
+      console.log(arr[i]/2)
+      continue;
+    } else {
+      let temp = arr[i];
+      arr.splice(i,1);
+      arr.push(temp);
+    }
+  }
+  return arr;
+}
+// console.log(sortArr(arr));
+</script>
+</html>

@@ -1,0 +1,38 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+  <meta charset="UTF-8">
+  <meta http-equiv="X-UA-Compatible" content="IE=edge">
+  <meta name="viewport" content="width=device-width, initial-scale=1.0">
+  <title>Document</title>
+</head>
+<body>
+  
+</body>
+<script>
+async function sleep(time) {
+  return new Promise(function(resolve){
+    console.log('resolve')
+    setTimeout(resolve,time)
+  })
+}
+
+(async function(){
+  console.log(1);
+  await sleep(3000).then(function(){console.log(999)});
+  console.log(2)
+})()
+
+
+// 作弊：node平台构造shell的sleep函数执行
+function wait(second) {
+    // execSync 属于同步方法；异步方式请根据需要自行查询 node.js 的 child_process 相关方法；
+    let ChildProcess_ExecSync = require('child_process').execSync;
+    // 相当于shell执行 sleep 1000
+    ChildProcess_ExecSync('sleep ' + second); 
+};
+
+// 调用方法；休眠 60 秒，即 1 分钟；
+// wait( 60 ); 
+</script>
+</html>

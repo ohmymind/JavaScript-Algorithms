@@ -1,0 +1,96 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+  <meta charset="UTF-8">
+  <meta http-equiv="X-UA-Compatible" content="IE=edge">
+  <meta name="viewport" content="width=device-width, initial-scale=1.0">
+  <title>Document</title>
+</head>
+<body>
+  
+</body>
+<script>
+function multiRequest(urls = [], maxNum) {
+  // 请求总数量
+  const len = urls.length;
+  // 根据请求数量创建一个数组来保存请求的结果
+  const result = new Array(len).fill(false);
+  // 当前完成的数量
+  let count = 0;
+
+  return new Promise((resolve, reject) => {
+    // 请求maxNum个
+    while (count < maxNum) {
+      next();
+    }
+    function next() {
+      let current = count++;
+      // 处理边界条件
+      if (current >= len) {
+        // 请求全部完成就将promise置为成功状态, 然后将result作为promise值返回
+        !result.includes(false) && resolve(result);
+        return;
+      }
+      const url = urls[current];
+      console.log(`开始 ${current}`, new Date().toLocaleString());
+      fetch(url)
+        .then((res) => {
+          // 保存请求结果
+          result[current] = res;
+          console.log(`完成 ${current}`, new Date().toLocaleString());
+          // 请求没有全部完成, 就递归
+          if (current < len) {
+            next();
+          }
+        })
+        .catch((err) => {
+          console.log(`结束 ${current}`, new Date().toLocaleString());
+          result[current] = err;
+          // 请求没有全部完成, 就递归
+          if (current < len) {
+            next();
+          }
+        });
+    }
+  });
+}
+
+
+let arr = [];
+for(let i = 0; i < 30; i++) {
+  arr.push(`http://p-m-a.cn/public/img/projects/${i+1}.jpg`)
+}
+console.log(arr)
+function promiseFetch(i) {
+  return new Promise(function(resolve, reject){
+    setTimeout(() => {
+      resolve(i)
+    }, Math.random() * 10 * 500);
+  })
+}
+// multiRequest(arr,3).then(function(val){console.log(val)});
+
+function queue(arr, max) {
+  const reqQueue = [];
+  let i = 0;
+  const result = [];
+  function next() {
+    reqQueue.push(arr[i]);
+    promiseFetch(i).then(function(i){
+      result[i] = arr[i];
+      console.log(result);
+      reqQueue.pop();
+      if(i < arr.length){
+        next()
+      }
+    })
+    i++;
+  }
+  while(reqQueue.length < max && i < arr.length){
+    next()
+    // console.log(reqQueue.length)
+  }
+}
+queue(arr,3);
+</script>
+</html>
