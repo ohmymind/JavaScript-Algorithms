@@ -1,0 +1,47 @@
+
+<!DOCTYPE html>
+<html lang="en">
+<head>
+  <meta charset="UTF-8">
+  <meta http-equiv="X-UA-Compatible" content="IE=edge">
+  <meta name="viewport" content="width=device-width, initial-scale=1.0">
+  <title>Document</title>
+</head>
+<body>
+  
+</body>
+<script>
+var postorder = function(root) {
+    let array = []
+    var dfs = function (node) {
+        if (node === null) {
+            return
+        }
+        // 后续遍历，从左往右遍历子节点递归
+        for (let i = 0; i < node.children.length; i++) {
+            dfs(node.children[i])
+        }
+        array.push(node.val) // 将当前节点值存如数组
+    }
+    dfs(root)
+    return array
+};
+// var postorder = function(root) {
+//     const result = [];
+//     function dfs(root) {
+//       // 退出条件
+//       if(!root) {
+//         return;
+//       }
+//       // 递归逻辑、递归转移
+//       for(let i = 0; i < root.children.length; i++) {
+//         // result.push(root.children[i]);
+//         dfs(root.children[i]);
+//       }
+//       result.push(root);
+//     }
+//     dfs(root);
+//     return result;
+// };
+</script>
+</html>

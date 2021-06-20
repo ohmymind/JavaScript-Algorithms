@@ -1,0 +1,28 @@
+
+<!DOCTYPE html>
+<html lang="en">
+<head>
+  <meta charset="UTF-8">
+  <meta http-equiv="X-UA-Compatible" content="IE=edge">
+  <meta name="viewport" content="width=device-width, initial-scale=1.0">
+  <title>Document</title>
+</head>
+<body>
+  
+</body>
+<script>
+var isSymmetric = function(root) {
+  if(!root) {return null}
+  function check(left, right) {
+        if(!left && !right) {
+            return true;
+        }
+        if(!left || !right) {
+            return false;
+        }
+        return left.val === right.val && check(left.left, right.right) && check(left.right, right.left)
+    }
+    return check(root.left, root.right);
+};
+</script>
+</html>

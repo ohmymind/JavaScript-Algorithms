@@ -1,0 +1,63 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+  <meta charset="UTF-8">
+  <meta http-equiv="X-UA-Compatible" content="IE=edge">
+  <meta name="viewport" content="width=device-width, initial-scale=1.0">
+  <title>Document</title>
+</head>
+<body>
+  
+</body>
+<script>
+let str = "abcabcbb"; // 3 abc
+var lengthOfLongestSubstring = function(str) {
+  let max = 0;
+  let son = [];
+  for(let i = 0; i < str.length; i++) {
+    if(!str) return max;
+    let index = son.indexOf(str[i]);
+    // console.log(index,son,str[i]);
+    if(index === -1) {
+      son.push(str[i]);
+      max = Math.max(son.length, max);
+    } else {
+      son = son.slice(index + 1, son.length + 1);
+      son.push(str[i]);
+    }
+  }
+  return max;
+};
+console.log(lengthOfLongestSubstring(str));
+// var lengthOfLongestSubstring = function(str) {
+//   let max = 0;
+//   let son = [];
+//   let left = right = 0;
+//   let result = '';
+//   while(right < str.length) {
+//     right ++;
+//     result += str[right];
+//     while(left < result.length) {
+
+//     }
+//     if() {
+
+//     } else {
+
+//     }
+//   }
+//   return max;
+// };
+// s = "ADOBECODEBANC", t = "ABC";
+// var minWindow = function(s, t) {
+//   let left = right = 0;
+//   let result = '';
+//   while(right < s.length) {
+//     // 全部包含：记录数据
+
+//     // 缩小left：不再包含，记录数据，增大right
+
+//   }
+// };
+</script>
+</html>

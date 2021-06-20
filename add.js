@@ -18,9 +18,29 @@ const template = `
 </script>
 </html>
 `
-fs.writeFile(`./${argv[2]}/${argv[3]}.html`, template, (error) => {
-  if(error) {
-    console.log(error)
+let filePath = '';
+if(argv.length === 3) {
+  filePath = `./${argv[2]}.html`
+} else if(argv.length === 4) {
+  filePath = `./${argv[2]}/${argv[3]}.html`;
+} else {
+  console.error('缺少参数');
+  return;
+}
+fs.stat(filePath, (error, stats) => {
+  // if(error) {
+  //   console.log('stat-error:',error, stats);
+  //   return;
+  // };
+  if(!stats) {
+    fs.writeFile(filePath, template, (error) => {
+      if(error) {
+        console.log('writeFile-error:',error)
+      } else {
+        console.log('创建成功：', filePath);
+      }
+    });
+  } else {
+    console.log(`${filePath}已存在！`);
   }
-  console.log('创建成功，路径：', `./${argv[2]}/${argv[3]}.html`);
-});
+})
